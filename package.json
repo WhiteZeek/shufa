@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "markdown-it": "^14.1.0",
+    "miniprogram-sm-crypto": "^0.3.13"
+  },
+  "name": "shufa",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,13 @@
+<!--register.wxml-->
+<view>
+  <view class="title">登录</view>
+  <view class="inputbox">
+    <input class="input" placeholder="邮箱" bindinput="inputUsername" />
+  </view>
+  <view class="inputbox">
+    <input class="input" placeholder="密码" password="true" bindinput="inputPassword" />
+  </view> 
+  <!-- <input class="input" placeholder="确认密码" password="true" bindinput="inputConfirmPassword" /> -->
+  <button class="register-btn" bindtap="register">登录/注册</button>
+  <button class="wxlogin-btn" bindtap="wxLogin">微信登录</button>
+</view>

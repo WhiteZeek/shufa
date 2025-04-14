@@ -1,0 +1,30 @@
+/**register.wxss**/
+.container {
+  padding: 20rpx;
+}
+.title {
+  margin: 106rpx auto 54rpx 54rpx;
+  font-size: 48rpx;
+  font-weight: 400;
+  color: #2f3542
+}
+.input {
+  height: 110rpx;
+}
+.inputbox {
+  border-bottom: 1rpx solid #f0f0f0;
+  margin:0 60rpx;
+}
+.register-btn {
+  width: 80%;
+  margin-top: 40rpx;
+  
+  background-color: #007AFF;
+  color: white;
+}
+.wxlogin-btn {
+  width: 80%;
+  margin-top: 20rpx;
+  background-color: #00B26A;
+  color: white;
+}

@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="title">书法</view>
+  <view class="image-container">
+    <image src="{{imageUrl}}" mode="aspectFit" wx:if="{{imageUrl}}"></image>
+  </view>
+  <button class="camera-btn" bindtap="chooseImage">
+    <text class="camera-icon">📷</text>
+    上传图片
+  </button>
+  <view class="divLine" style="height: 2rpx;width: 95%;background-color: grey;margin-bottom: 15rpx;"></view>
+  <rich-text nodes="{{output}}"></rich-text>
+</view>

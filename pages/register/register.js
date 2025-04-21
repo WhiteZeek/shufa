@@ -1,4 +1,5 @@
 // register.js
+var app = getApp()
 Page({
   data: {
     username: '',
@@ -71,8 +72,29 @@ Page({
         if (res.code) {
           // 发送res.code到后台换取openId, sessionKey, unionId
           console.log('微信code:', res.code)
-          // 此处后端API登录验证
-          var app = getApp()
+          wx.request({
+            url: 'http://124.220.237.75:8888/api/auth/login',
+            method: 'POST',
+            header:{},
+            data:{
+              'code': res.code
+            },
+            success: (res) => {    
+              if (res.data.code == "200"){
+                wx.setStorage({
+                  key: "userCode",
+                  data: res.data.data
+                })
+                // wx.getStorage({
+                //   key: 'userCode',
+                //   success(res){
+                //     console.log(res)
+                //   }
+                // })
+              }
+            },
+            
+          })
           app.globalData.isLogin = true
           wx.showToast({
             title: '登录成功',

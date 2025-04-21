@@ -32,6 +32,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    isLogin: false
+    isLogin: false,
+    userCode: null
   }
 })

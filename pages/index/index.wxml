@@ -8,6 +8,6 @@
     <text class="camera-icon">📷</text>
     上传图片
   </button>
-  <view class="divLine" style="height: 2rpx;width: 95%;background-color: grey;margin-bottom: 15rpx;"></view>
+  <view class="divLine" style="{{divstyle}}"></view>
   <rich-text nodes="{{output}}"></rich-text>
 </view>

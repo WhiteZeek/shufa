@@ -1,0 +1,18 @@
+/**login.wxss**/
+.container {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+}
+.login-btn {
+  width: 80%;
+  margin-top: 20rpx;
+  background-color: #007AFF;
+  color: white;
+}

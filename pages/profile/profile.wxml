@@ -1,0 +1,40 @@
+<!--profile.wxml-->
+<view>
+  <view class="header">
+  <view class="userinfo">
+  <!-- 获取微信头像或上传 -->
+  
+  <button class="nickname-wrapper" wx:if="{{!isLogin}}" bindtap="wxLogin">
+    <view style="margin-top: 60rpx;display: flex;justify-content: center;padding-bottom: 20rpx;" wx:if="{{!isLogin}}">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+    </view>
+  <div wx:if="{{!isLogin}}">
+  点击登录
+  </div>
+  </button>
+
+    <block wx:if="{{canIUseOpenData}}">
+     <button class="avatar-wrapper" wx:if="{{isLogin}}" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <view class="userinfo-avatar">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+    </button>
+
+      <open-data type="userNickName" wx:if="{{isLogin}}"></open-data>
+    </block>
+    <block wx:elif="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+    </block>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname" >{{userInfo.nickName}}</text>
+    </block>
+  </view>
+</view>
+  <view class="usermotto">
+    <text class="user-motto"></text>
+  </view>
+
+</view>

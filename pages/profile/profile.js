@@ -16,7 +16,8 @@ Page({
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({
-        canIUseGetUserProfile: true
+        canIUseGetUserProfile: true,
+        isLogin: getApp().globalData.isLogin
       })
     }
     console.log(this.data.isLogin)
@@ -41,6 +42,61 @@ Page({
   goToLogin() {
     wx.navigateTo({
       url: '/pages/register/register',
+    })
+  },
+  wxLogin: function () {
+    wx.login({
+      success: (res) => {
+        if (res.code) {
+          // 发送res.code到后台换取openId, sessionKey, unionId
+          console.log('微信code:', res.code)
+          wx.request({
+            url: 'http://124.220.237.75:8888/api/auth/login',
+            method: 'POST',
+            header:{},
+            data:{
+              'code': res.code
+            },
+            success: (res) => {    
+              if (res.data.code == "200"){
+                wx.setStorage({
+                  key: "userCode",
+                  data: res.data.data
+                })
+                getApp().globalData.isLogin = true
+
+                // wx.getStorage({
+                //   key: 'userCode',
+                //   success(res){
+                //     console.log(res)
+                //   }
+                // })
+              }
+            },
+            
+          })
+          var app = getApp()
+          app.globalData.isLogin = true
+          wx.showToast({
+            title: '登录成功',
+            icon: 'success',
+            duration: 2000
+          })
+          setTimeout(() => {
+            this.setData({
+              isLogin: true
+            })
+            wx.navigateBack()
+          }, 2000)
+        } else {
+          console.log(res.errMsg)
+          wx.showToast({
+            title: '登录失败，请重试',
+            icon: 'error',
+            duration: 2000
+          })
+        }
+      }
     })
   },
   onChooseAvatar(e) {

@@ -6,13 +6,40 @@ Page({
   data: {
     imageUrl: '',
     output:'',
-    divstyle: 'height: 2rpx;width: 90%;background-color: grey;margin-bottom: 15rpx;display: none;'
+    divstyle: 'height: 2rpx;width: 90%;background-color: grey;margin-bottom: 15rpx;display: none;',
+    usercode: ''
   },
   onLoad: function () {
-
+    try{
+      var code = wx.getStorageSync('userCode')
+      if(code)
+      {
+        this.setData({
+          usercode : code
+        })
+      }}
+    catch(e){}
   },
   chooseImage: function () {
     var that = this;
+    try{
+      var code = wx.getStorageSync('userCode')
+      if(code)
+        that.setData({
+          usercode: code
+        })
+    }
+    catch(e){
+      console.log(e)}
+    if(that.data.usercode == "")
+    {
+      wx.showToast({
+        title: '请先登录',
+        icon: 'error',
+
+      })
+      return
+    }
     wx.chooseMedia({
         count: 1,
         mediaType: ['image'],
@@ -32,26 +59,18 @@ Page({
                   divstyle: "height: 2rpx;width: 90%;background-color: grey;margin-bottom: 15rpx;",
                   output: "加载中..."
                 })
-                var code = ''
-                wx.getStorage({
-                  key: 'userCode',
-                  success(res) {
-                    code = res.data
-                    
-                  }
-                })
-                console.log(code)
+
                 wx.request({
                   url: 'http://124.220.237.75:8888/api/app/recognition',
                   method: 'POST',
                   header:{
-                    'Authorization': 'Bearer ' + code
+                    'Authorization': 'Bearer ' + that.data.usercode
                   },
                   data:{
                     'img': res.data
                     },
                   success(res){
-                    console.log(res)
+                    // console.log(res)
                     const Outmd = md.render(res.data.data)
                     that.setData({
                         output: Outmd

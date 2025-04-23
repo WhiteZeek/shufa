@@ -2,7 +2,7 @@
 .header {
     width: 100%;
     height: 310rpx;
-    background: #d5ebe1;
+    background: #e0dfc6;
 }
 .userinfo {
   display: flex;
@@ -30,7 +30,7 @@
   }
 .nickname-wrapper {
     padding: 0;
-    background-color:#d5ebe1;
+    background-color:#e0dfc6;
     color: #aaaaaa;
     text-align: center;
     height: 300rpx;

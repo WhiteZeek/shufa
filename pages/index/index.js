@@ -31,7 +31,7 @@ Page({
     }
     catch(e){
       console.log(e)}
-    if(that.data.usercode == "")
+    if(getApp().globalData.isLogin == false)
     {
       wx.showToast({
         title: '请先登录',
